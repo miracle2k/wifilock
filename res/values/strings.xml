@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    
+    <string name="app_name">WifiLock</string>
+<string name="service_enabled">WifiLock is now ENABLED, and your wifi connection will remain active at all times.</string>
+<string name="service_disabled">WifiLock is now DISABLED, and your wifi may be shutoff when sleeping to conserve battery power.</string>
+</resources>
