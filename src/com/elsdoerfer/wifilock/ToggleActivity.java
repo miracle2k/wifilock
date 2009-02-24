@@ -1,5 +1,5 @@
 /*
-        WifiLock: keep wifi active when phone goes to sleep. 
+        WifiLock: keep Wi-Fi active when Phone goes to sleep. 
         Copyright (C) 2009 Michael Elsdörfer <http://elsdoerfer.name>
 
         This program is free software: you can redistribute it and/or modify

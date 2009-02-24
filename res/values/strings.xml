@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    
-    <string name="app_name">WifiLock</string>
-<string name="service_enabled">WifiLock is now ENABLED, and your wifi connection will remain active at all times.</string>
-<string name="service_disabled">WifiLock is now DISABLED, and your wifi may be shutoff when sleeping to conserve battery power.</string>
+<string name="app_name">Wi-Fi Lock</string>
+<string name="app_description">Keep Wi-Fi radio awake when Phone goes to sleep.</string>
+<string name="service_enabled">Wi-Fi Lock is now ENABLED, and your Wi-Fi radio will remain awake at all times (unless explicitly disabled).</string>
+<string name="service_disabled">Wi-Fi Lock is now DISABLED, and the Phone may shut of your Wi-Fi radio when it is idle.</string>
 </resources>
