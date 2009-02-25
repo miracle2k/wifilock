@@ -1,3 +1,33 @@
 - Remember the enabled/disabled status and restore on boot.
 
 - German localization.
+
+- (optional) Notification Icon indicating whether we are
+  on or off (suggested via Market comments).
+  
+- Some guy on the market complained about getting the "enabled"
+  message every 30 seconds. This sounds like his service is 
+  being restarted due to low memory. There are basically a 
+  couple issues here:
+  
+        - When the service is killed and restarted, we 
+          theoretically need to maintain state. However,
+          since the service is only running when the 
+          feature should be active, this *seems* like a 
+          non-issue. Running always means enabled.
+  
+        - The toast though should possibly be shown by 
+          the controlling toggler activity, so that the
+          user will not see notifications when the 
+          service restarts.
+
+- Option to combine with wifi toggle feature, switching 
+  on Wifi *and*  enabling the lock in one click. Although 
+  this might really be unnecessary once boot persistance 
+  is implemented since you basically can just leave it 
+  always on. Let's see about this ((suggested via Market 
+  comments).
+  
+- Is it wise to refresh the WifiLock once in a time to be
+  on the safe side? There are also issues like:
+  http://code.google.com/p/android/issues/detail?id=2059
