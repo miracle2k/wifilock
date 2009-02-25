@@ -22,6 +22,7 @@ import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
+import android.widget.Toast;
 
 public class ToggleActivity extends Activity {
     
@@ -36,11 +37,13 @@ public class ToggleActivity extends Activity {
 		if (WifiLockService.serviceRunning) {
 			Log.d(LOG_TAG, "before stopService");
 			stopService(svc);
+			Toast.makeText(this, R.string.service_disabled, Toast.LENGTH_LONG).show();
 			Log.d(LOG_TAG, "after stopService");
 		}
 		else{
 			Log.d(LOG_TAG, "before startService");
 			startService(svc);
+			Toast.makeText(this, R.string.service_enabled, Toast.LENGTH_LONG).show();
 			Log.d(LOG_TAG, "after startService");
 		}
 		

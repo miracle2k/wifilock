@@ -24,7 +24,6 @@ import android.content.Intent;
 import android.net.wifi.WifiManager;
 import android.os.IBinder;
 import android.util.Log;
-import android.widget.Toast;
 
 public class WifiLockService extends Service {
 	
@@ -57,8 +56,6 @@ public class WifiLockService extends Service {
 		lock.acquire();
 		serviceRunning = true;
 		
-		Toast.makeText(this, R.string.service_enabled, Toast.LENGTH_LONG).show();
-		
 		Log.v(LOG_TAG, "WifiLock service creation completed");
 	}
 
@@ -68,7 +65,6 @@ public class WifiLockService extends Service {
 		
 		serviceRunning = false;
 		lock.release();
-		Toast.makeText(this, R.string.service_disabled, Toast.LENGTH_LONG).show();
 		
 		super.onDestroy();
 		Log.v(LOG_TAG, "WifiLock service shutdown completed");
