@@ -15,3 +15,9 @@
 - Is it wise to refresh the WifiLock once in a time to be
   on the safe side? There are also issues like:
   http://code.google.com/p/android/issues/detail?id=2059
+  
+- Optionally force disable usage of a data plan in any 
+  case (suggested by Ayman El-Ghazali). If Android does not
+  support this per se, we could temporarily modify all APN 
+  records. All in all, not sure if this is really something
+  we should implement.
