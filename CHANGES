@@ -1,0 +1,9 @@
+1.1.0 (2009-03-12)
+    ADD: Boot persistance.
+    FIX: Typo in toast message.
+
+1.0.1 (2009-02-25)
+    FIX: No longer show notifications when service is auto-restarted by Android.
+
+1.0.0 (2009-02-24)
+    Initial release.
