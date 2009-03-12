@@ -19,11 +19,14 @@
 package com.elsdoerfer.wifilock;
 
 import android.app.Service;
+import android.content.ComponentName;
 import android.content.Context;
 import android.content.Intent;
+import android.content.pm.PackageManager;
 import android.net.wifi.WifiManager;
 import android.os.IBinder;
 import android.util.Log;
+import android.widget.Toast;
 
 public class WifiLockService extends Service {
 	
@@ -39,7 +42,7 @@ public class WifiLockService extends Service {
 	 */
 	protected WifiManager.WifiLock lock = null;
 		
-	static private String LOG_TAG = "WifiLock.Service";
+	static public String LOG_TAG = "WifiLock";
 
 	public WifiLockService() {}
 
@@ -68,6 +71,47 @@ public class WifiLockService extends Service {
 		
 		super.onDestroy();
 		Log.v(LOG_TAG, "WifiLock service shutdown completed");
+	}
+	
+	/**
+	 * Static control functions. 
+	 */
+	
+	public static void start(Context context, boolean showToast) {
+		Intent svc = new Intent(context, WifiLockService.class);
+		PackageManager pm = context.getPackageManager();
+
+		Log.d(LOG_TAG, "before startService");
+		context.startService(svc);
+		pm.setComponentEnabledSetting(
+				new ComponentName(context, BootReceiver.class),
+				PackageManager.COMPONENT_ENABLED_STATE_ENABLED,
+				PackageManager.DONT_KILL_APP);
+		if (showToast) 
+			Toast.makeText(context, R.string.service_enabled, Toast.LENGTH_LONG).show();
+		Log.d(LOG_TAG, "after startService");
+	}
+	
+	public static void stop(Context context, boolean showToast) {
+		Intent svc = new Intent(context, WifiLockService.class);
+		PackageManager pm = context.getPackageManager();
+		
+		Log.d(LOG_TAG, "before stopService");
+		context.stopService(svc);
+		pm.setComponentEnabledSetting(
+				new ComponentName(context, BootReceiver.class),
+				PackageManager.COMPONENT_ENABLED_STATE_DISABLED,
+				PackageManager.DONT_KILL_APP);
+		if (showToast)
+			Toast.makeText(context, R.string.service_disabled, Toast.LENGTH_LONG).show();
+		Log.d(LOG_TAG, "after stopService");    	
+	}
+	
+	public static void toggle(Context context, boolean showToast) {
+		if (serviceRunning)
+			stop(context, showToast);
+		else
+			start(context, showToast);
 	}
 
 }
