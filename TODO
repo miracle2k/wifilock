@@ -5,7 +5,7 @@
 
 - Option to combine with wifi toggle feature, switching 
   on Wifi *and*  enabling the lock in one click. Although 
-  this might really be unnecessary once boot persistance 
+  this might really be unnecessary once boot persistence 
   is implemented since you basically can just leave it 
   always on. Let's see about this ((suggested via Market 
   comments).
@@ -19,3 +19,21 @@
   support this per se, we could temporarily modify all APN 
   records. All in all, not sure if this is really something
   we should implement.
+  
+- Make a bunch of behavior, like boot persistence, 
+  optional. To do this, we'd have to introduce a 
+  configuration dialog. It'd be cool if we could hook into
+  the system settings, but we can't, so the best option 
+  would be to use our own settings activity that replaces
+  the current toggle system, and an additional setting that
+  allows the user to opt into the toggle system. In this 
+  case, the settings would be unavailable from this point on, 
+  until the application data is cleared through the 
+  application manager.
+  
+  Alternatively, we could have a separate icon in the 
+  application launcher that starts the settings activity, 
+  and for users who prefer not to have two icons a setting
+  could be provided that disables the activity (via
+  setComponentEnabledSetting), which *should* allow us to
+  make the icon disappear. 
