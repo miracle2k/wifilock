@@ -1,5 +1,6 @@
 1.1.1 (X)
-	CHANGE: Exclude ourselves from recent activities list (suggested by Mariano Kamp).
+    CHANGE: Exclude ourselves from recent activities list (suggested by Mariano Kamp).
+    CHANGE: Better handle quick toggling, by reusing an existing toast rather than queuing them.
 
 1.1.0 (2009-03-12)
     ADD: Boot persistence.

@@ -1,6 +1,6 @@
 /*
-        WifiLock: keep Wi-Fi active when Phone goes to sleep. 
-        Copyright (C) 2009 Michael Elsdörfer <http://elsdoerfer.name>
+        WifiLock: keep Wi-Fi active when Phone goes to sleep.
+        Copyright (C) 2009 Michael ElsdÃ¶rfer <http://elsdoerfer.name>
 
         This program is free software: you can redistribute it and/or modify
         it under the terms of the GNU General Public License as published by
@@ -29,54 +29,61 @@ import android.util.Log;
 import android.widget.Toast;
 
 public class WifiLockService extends Service {
-	
+
 	/**
-	 * Global state of this service. Is checked by the 
+	 * Global state of this service. Is checked by the
 	 * toggle activity to determine whether to start or
-	 * stop the service. 
+	 * stop the service.
 	 */
 	static public boolean serviceRunning = false;
-	
+
+	/**
+	 * Toast object used to show the toggle messages. By
+	 * making this global we can reuse an existing object
+	 * (or cancel it) when the user is toggling quickly.
+	 */
+	static private Toast cachedToastObj = null;
+
 	/**
 	 * The WifiLock the service holds while running.
 	 */
 	protected WifiManager.WifiLock lock = null;
-		
+
 	static public String LOG_TAG = "WifiLock";
 
 	public WifiLockService() {}
 
 	@Override
 	public IBinder onBind(Intent intent) { return null; }
-	
+
 	@Override
 	public void onCreate() {
 		Log.v(LOG_TAG, "WifiLock service about to be created");
 		super.onCreate();
-		
+
 		WifiManager manager = (WifiManager) getSystemService(Context.WIFI_SERVICE);
 		lock = manager.createWifiLock("com.elsdoerfer.wifilock");
 		lock.acquire();
 		serviceRunning = true;
-		
+
 		Log.v(LOG_TAG, "WifiLock service creation completed");
 	}
 
 	@Override
 	public void onDestroy() {
 		Log.v(LOG_TAG, "WifiLock service about to shutdown");
-		
+
 		serviceRunning = false;
 		lock.release();
-		
+
 		super.onDestroy();
 		Log.v(LOG_TAG, "WifiLock service shutdown completed");
 	}
-	
+
 	/**
-	 * Static control functions. 
+	 * Static control functions.
 	 */
-	
+
 	public static void start(Context context, boolean showToast) {
 		Intent svc = new Intent(context, WifiLockService.class);
 		PackageManager pm = context.getPackageManager();
@@ -87,15 +94,15 @@ public class WifiLockService extends Service {
 				new ComponentName(context, BootReceiver.class),
 				PackageManager.COMPONENT_ENABLED_STATE_ENABLED,
 				PackageManager.DONT_KILL_APP);
-		if (showToast) 
-			Toast.makeText(context, R.string.service_enabled, Toast.LENGTH_LONG).show();
+		if (showToast)
+			showToast(context, R.string.service_enabled);
 		Log.d(LOG_TAG, "after startService");
 	}
-	
+
 	public static void stop(Context context, boolean showToast) {
 		Intent svc = new Intent(context, WifiLockService.class);
 		PackageManager pm = context.getPackageManager();
-		
+
 		Log.d(LOG_TAG, "before stopService");
 		context.stopService(svc);
 		pm.setComponentEnabledSetting(
@@ -103,15 +110,24 @@ public class WifiLockService extends Service {
 				PackageManager.COMPONENT_ENABLED_STATE_DISABLED,
 				PackageManager.DONT_KILL_APP);
 		if (showToast)
-			Toast.makeText(context, R.string.service_disabled, Toast.LENGTH_LONG).show();
-		Log.d(LOG_TAG, "after stopService");    	
+			showToast(context, R.string.service_disabled);
+		Log.d(LOG_TAG, "after stopService");
 	}
-	
+
 	public static void toggle(Context context, boolean showToast) {
 		if (serviceRunning)
 			stop(context, showToast);
 		else
 			start(context, showToast);
+	}
+
+	private static void showToast(Context context, int resid) {
+		if (cachedToastObj == null)
+			cachedToastObj = Toast.makeText(context, resid, Toast.LENGTH_LONG);
+		else {
+			cachedToastObj.setText(resid);
+		}
+		cachedToastObj.show();
 	}
 
 }

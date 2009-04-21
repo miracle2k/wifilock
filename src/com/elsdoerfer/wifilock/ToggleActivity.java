@@ -1,6 +1,6 @@
 /*
-        WifiLock: keep Wi-Fi active when Phone goes to sleep. 
-        Copyright (C) 2009 Michael Elsdörfer <http://elsdoerfer.name>
+        WifiLock: keep Wi-Fi active when Phone goes to sleep.
+        Copyright (C) 2009 Michael ElsdÃ¶rfer <http://elsdoerfer.name>
 
         This program is free software: you can redistribute it and/or modify
         it under the terms of the GNU General Public License as published by
@@ -22,7 +22,7 @@ import android.app.Activity;
 import android.os.Bundle;
 
 public class ToggleActivity extends Activity {
-	
+
 	@Override
 	public void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
