@@ -1,5 +1,8 @@
+1.1.1 (X)
+	CHANGE: Exclude ourselves from recent activities list (suggested by Mariano Kamp).
+
 1.1.0 (2009-03-12)
-    ADD: Boot persistance.
+    ADD: Boot persistence.
     FIX: Typo in toast message.
 
 1.0.1 (2009-02-25)

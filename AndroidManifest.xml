@@ -7,17 +7,18 @@
     <activity android:name=".ToggleActivity"
               android:label="@string/app_name"
               android:description="@string/app_description"
-              android:theme="@style/Theme">
+              android:theme="@style/Theme"
+              android:excludeFromRecents="true">
         <intent-filter>
             <action android:name="android.intent.action.MAIN" />
             <category android:name="android.intent.category.LAUNCHER" />
         </intent-filter>
     </activity>
     <service android:name=".WifiLockService"/>
-    <receiver android:name=".BootReceiver" android:enabled="true"> 
-        <intent-filter> 
+    <receiver android:name=".BootReceiver" android:enabled="true">
+        <intent-filter>
             <action android:name="android.intent.action.BOOT_COMPLETED" />
-        </intent-filter> 
+        </intent-filter>
     </receiver>
 </application>
 <uses-permission android:name="android.permission.WAKE_LOCK"></uses-permission>
