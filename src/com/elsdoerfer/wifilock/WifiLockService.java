@@ -90,12 +90,12 @@ public class WifiLockService extends Service {
 
 		Log.d(LOG_TAG, "before startService");
 		context.startService(svc);
+		if (showToast)
+			showToast(context, R.string.service_enabled);
 		pm.setComponentEnabledSetting(
 				new ComponentName(context, BootReceiver.class),
 				PackageManager.COMPONENT_ENABLED_STATE_ENABLED,
 				PackageManager.DONT_KILL_APP);
-		if (showToast)
-			showToast(context, R.string.service_enabled);
 		Log.d(LOG_TAG, "after startService");
 	}
 
@@ -105,12 +105,12 @@ public class WifiLockService extends Service {
 
 		Log.d(LOG_TAG, "before stopService");
 		context.stopService(svc);
+		if (showToast)
+			showToast(context, R.string.service_disabled);
 		pm.setComponentEnabledSetting(
 				new ComponentName(context, BootReceiver.class),
 				PackageManager.COMPONENT_ENABLED_STATE_DISABLED,
 				PackageManager.DONT_KILL_APP);
-		if (showToast)
-			showToast(context, R.string.service_disabled);
 		Log.d(LOG_TAG, "after stopService");
 	}
 
