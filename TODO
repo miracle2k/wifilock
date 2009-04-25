@@ -42,3 +42,5 @@
   increased in 1.1.0 - measure if the setComponentEnabledSetting
   call indeed is responsible for this, and if so, show the 
   toast first, then do the call.  
+  
+- Locale plugin.
