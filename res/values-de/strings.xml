@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+<string name="app_name">WLAN Sperre</string>
+<string name="app_description">Verhindert das automatische Abschalten der WLAN Funktion während das Gerät nicht verwendet wird.</string>
+<string name="service_enabled">Die WLAN Sperre ist nun AKTIV, und die WLAN Funktion wird nicht mehr automatisch abgeschaltet.</string>
+<string name="service_disabled">Die WLAN Sperre is nun INAKTIV, und die WLAN Funktion kann abgeschaltet werden während das Gerät nicht verwendet wird.</string>
+</resources>

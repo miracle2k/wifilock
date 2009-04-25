@@ -3,7 +3,7 @@
       Kamp).
     * Better handle quick toggling, by reusing an existing toast rather
       than queuing them.
-
+    * Added German localization.
 
 1.1.0 (2009-03-12)
     * Added boot persistence.
