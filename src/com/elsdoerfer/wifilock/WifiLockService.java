@@ -18,6 +18,8 @@
 
 package com.elsdoerfer.wifilock;
 
+import java.util.concurrent.atomic.AtomicInteger;
+
 import android.app.Service;
 import android.content.ComponentName;
 import android.content.Context;
@@ -86,31 +88,21 @@ public class WifiLockService extends Service {
 
 	public static void start(Context context, boolean showToast) {
 		Intent svc = new Intent(context, WifiLockService.class);
-		PackageManager pm = context.getPackageManager();
-
 		Log.d(LOG_TAG, "before startService");
 		context.startService(svc);
 		if (showToast)
 			showToast(context, R.string.service_enabled);
-		pm.setComponentEnabledSetting(
-				new ComponentName(context, BootReceiver.class),
-				PackageManager.COMPONENT_ENABLED_STATE_ENABLED,
-				PackageManager.DONT_KILL_APP);
+		enableBootReceiver(context, true);
 		Log.d(LOG_TAG, "after startService");
 	}
 
 	public static void stop(Context context, boolean showToast) {
 		Intent svc = new Intent(context, WifiLockService.class);
-		PackageManager pm = context.getPackageManager();
-
 		Log.d(LOG_TAG, "before stopService");
 		context.stopService(svc);
 		if (showToast)
 			showToast(context, R.string.service_disabled);
-		pm.setComponentEnabledSetting(
-				new ComponentName(context, BootReceiver.class),
-				PackageManager.COMPONENT_ENABLED_STATE_DISABLED,
-				PackageManager.DONT_KILL_APP);
+		enableBootReceiver(context, false);
 		Log.d(LOG_TAG, "after stopService");
 	}
 
@@ -128,6 +120,45 @@ public class WifiLockService extends Service {
 			cachedToastObj.setText(resid);
 		}
 		cachedToastObj.show();
+	}
+
+	static class QueuedToggleThread extends Thread {
+		AtomicInteger wanted = new AtomicInteger();
+		private Context _context;
+		public QueuedToggleThread(Context context) {
+			_context = context;
+		}
+		public void run() {
+			Log.d(LOG_TAG, "BootReceiver toggle thread started");
+			PackageManager pm = _context.getPackageManager();
+			int switchTo = wanted.getAndSet(0);
+			while (switchTo != 0) {
+				boolean enable = switchTo == 1;
+				pm.setComponentEnabledSetting(
+					new ComponentName(_context, BootReceiver.class),
+					enable
+						? PackageManager.COMPONENT_ENABLED_STATE_ENABLED
+						: PackageManager.COMPONENT_ENABLED_STATE_DISABLED,
+					PackageManager.DONT_KILL_APP);
+				Log.d(LOG_TAG, "BootReceiver "+
+						(enable?"enabled":"disabled"));
+				switchTo = wanted.getAndSet(0);
+			}
+			Log.d(LOG_TAG, "BootReceiver toggle thread ended");
+		}
+	};
+
+	static Thread switcher = null;
+	private static void enableBootReceiver(Context context, boolean enable) {
+
+		if (switcher != null && switcher.isAlive())
+			((QueuedToggleThread)switcher).wanted.set(enable ? 1 : 2);
+		else {
+			switcher = new QueuedToggleThread(context);
+			((QueuedToggleThread)switcher).wanted.set(enable ? 1 : 2);
+
+			switcher.start();
+		}
 	}
 
 }
