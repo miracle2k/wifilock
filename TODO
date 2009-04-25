@@ -1,7 +1,13 @@
+- Investigate if running the service in a separate process
+  will improve memory conditions, since now the Activity
+  process can be killed off immediately. Right now, the
+  Activity memory is probably only freed once the service
+  restarts for the first time.
+
 - (optional) Notification Icon indicating whether we are
   on or off (suggested via Market comments).
 
-- Option to combine with wifi toggle feature, switching
+- Option to combine with Wifi toggle feature, switching
   on Wifi *and*  enabling the lock in one click. Although
   this might really be unnecessary once boot persistence
   is implemented since you basically can just leave it
