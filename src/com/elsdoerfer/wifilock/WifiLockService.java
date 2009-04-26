@@ -19,10 +19,8 @@
 package com.elsdoerfer.wifilock;
 
 import android.app.Service;
-import android.content.ComponentName;
 import android.content.Context;
 import android.content.Intent;
-import android.content.pm.PackageManager;
 import android.net.wifi.WifiManager;
 import android.os.IBinder;
 import android.util.Log;
@@ -86,31 +84,23 @@ public class WifiLockService extends Service {
 
 	public static void start(Context context, boolean showToast) {
 		Intent svc = new Intent(context, WifiLockService.class);
-		PackageManager pm = context.getPackageManager();
 
 		Log.d(LOG_TAG, "before startService");
 		context.startService(svc);
 		if (showToast)
 			showToast(context, R.string.service_enabled);
-		pm.setComponentEnabledSetting(
-				new ComponentName(context, BootReceiver.class),
-				PackageManager.COMPONENT_ENABLED_STATE_ENABLED,
-				PackageManager.DONT_KILL_APP);
+		BootReceiver.enable(context, true);
 		Log.d(LOG_TAG, "after startService");
 	}
 
 	public static void stop(Context context, boolean showToast) {
 		Intent svc = new Intent(context, WifiLockService.class);
-		PackageManager pm = context.getPackageManager();
 
 		Log.d(LOG_TAG, "before stopService");
 		context.stopService(svc);
 		if (showToast)
 			showToast(context, R.string.service_disabled);
-		pm.setComponentEnabledSetting(
-				new ComponentName(context, BootReceiver.class),
-				PackageManager.COMPONENT_ENABLED_STATE_DISABLED,
-				PackageManager.DONT_KILL_APP);
+		BootReceiver.enable(context, false);
 		Log.d(LOG_TAG, "after stopService");
 	}
 

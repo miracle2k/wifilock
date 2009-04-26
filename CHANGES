@@ -3,8 +3,8 @@
       Kamp).
     * Better handle quick toggling, by reusing an existing toast rather
       than queuing them.
-    * Increased perceived speed by showing the toast message first, and
-      toggling the BOOT_COMPLETED receiver component afterwards.
+    * Increased perceived speed by using an autostart setting rather than
+      disabling the boot receiver (slow!).
     * Added German localization.
 
 1.1.0 (2009-03-12)
