@@ -1,4 +1,4 @@
-1.1.1 (2009-04-26)
+1.1.2 (2009-04-26)
     * Exclude ourselves from recent activities list (suggested by Mariano
       Kamp).
     * Better handle quick toggling, by reusing an existing toast rather
