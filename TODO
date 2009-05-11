@@ -17,6 +17,17 @@
 - Is it wise to refresh the WifiLock once in a time to be
   on the safe side? There are also issues like:
   http://code.google.com/p/android/issues/detail?id=2059
+  
+- Possible a related issue, it appears that if a wifi lock
+  is active, then automatic wifi reconnecting seems to be
+  broken im some cases. Wifi sometimes doesn't seem to come
+  back automatically, even though a connection would be 
+  available, and so far this has only happend for me when a
+  wifi lock utility was activated. A possible solution would
+  be waiting for wifi state changes and release the lock 
+  when wifi comes down, and renable the lock once it is back.
+  This issue *might* be pre-cupecake only - needs 
+  investigatation.
 
 - Optionally force disable usage of a data plan in any
   case (suggested by Ayman El-Ghazali). If Android does not
