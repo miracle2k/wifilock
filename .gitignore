@@ -1,4 +1,5 @@
 /BRANCH_TODO
 /bin/*
 /gen/*
-.fabric
+/.fabric
+/.settings/*
