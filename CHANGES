@@ -1,4 +1,4 @@
-2.0.0 (2009-05-25)
+2.0.0 (2009-05-27)
 	* Cupcake now features a "Wi-Fi sleep policy" setting that sort of
 	  obsoletes our core functionality. Instead, when running on Cupcake,
 	  we now simply function as a quick-toggle tool for said setting.
