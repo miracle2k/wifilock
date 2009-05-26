@@ -111,7 +111,7 @@ public class WifiLockService extends Service {
 			start(context, showToast);
 	}
 
-	private static void showToast(Context context, int resid) {
+	public static void showToast(Context context, int resid) {
 		if (cachedToastObj == null)
 			cachedToastObj = Toast.makeText(context, resid, Toast.LENGTH_LONG);
 		else {
