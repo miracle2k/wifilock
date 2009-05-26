@@ -60,14 +60,22 @@ public class ToggleActivity extends Activity {
 	public void enableBootReceiverAndService() {
 		Log.v(WifiLockService.LOG_TAG, "Running on a pre-Cupcake device, "+
 				"ensuring that service and bootreceiver components are active.");
+		// TODO: Considering that we are running this code on every call
+		// now, I guess we might just as well go back to using the
+		// PackageManager to enable/disable autostart rather than using the
+		// setting? Except of course if setting the state to the value that
+		// it already has is quicker than changing it - in which case only
+		// the first use would be slower, and subsequently, the user would
+		// enjoy the performance boost through not having to go through the
+		// package manager.
 		PackageManager pm = getPackageManager();
 		pm.setComponentEnabledSetting(
                 new ComponentName(this, BootReceiver.class),
-                PackageManager.COMPONENT_ENABLED_STATE_DISABLED,
+                PackageManager.COMPONENT_ENABLED_STATE_ENABLED,
                 PackageManager.DONT_KILL_APP);
 		pm.setComponentEnabledSetting(
                 new ComponentName(this, WifiLockService.class),
-                PackageManager.COMPONENT_ENABLED_STATE_DISABLED,
+                PackageManager.COMPONENT_ENABLED_STATE_ENABLED,
                 PackageManager.DONT_KILL_APP);
 	}
 
