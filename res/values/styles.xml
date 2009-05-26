@@ -1,6 +1,5 @@
 <resources>
 <style name="Theme">
-    <item name="android:windowBackground">@drawable/transparent_background</item>
     <item name="android:windowNoTitle">true</item>
     <item name="android:windowIsFloating">true</item>
 </style>
