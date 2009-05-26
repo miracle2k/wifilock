@@ -31,7 +31,7 @@ import android.util.Log;
 public class ToggleActivity extends Activity {
 
 	static public boolean weArePreCupcake() {
-		return (VERSION.SDK.equals("1") | VERSION.SDK.equals("2"));
+		return (VERSION.SDK.equals("1") || VERSION.SDK.equals("2"));
 	}
 
 	@Override
