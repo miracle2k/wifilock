@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
 <string name="app_name">Wi-Fi Lock</string>
-<string name="app_description">Keep Wi-Fi radio awake when Phone goes to sleep.</string>
-<string name="service_enabled">Wi-Fi Lock is now ENABLED, and your Wi-Fi radio will remain awake at all times (unless explicitly switched off).</string>
-<string name="service_disabled">Wi-Fi Lock is now DISABLED, and the Phone may shut off your Wi-Fi radio when it is idle.</string>
-<string name="setting_to_never">Your Wi-Fi sleep policy is now set to NEVER, and your Wi-Fi radio will remain awake at all times (unless explicitly switched off).</string>
-<string name="setting_to_default">Your Wi-Fi sleep policy is now set to DEFAULT, and the Phone may shut off your Wi-Fi radio when it is idle.</string>
+<string name="app_description">Lascia la radio Wi-Fi in funzione quando blocchi il telefono</string>
+<string name="service_enabled">Wi-Fi Lock è ATTIVATO, la tua radio Wi-Fi rimmarrà attiva fino a quando non la spegnerai.</string>
+<string name="service_disabled">Wi-Fi Lock è DISATTIVATO, il telefono potrebbe spegnere la radio Wi-Fi quando lo bloccherai.</string>
+<string name="setting_to_never">La sospensione della connessione Wi-Fi è ora impostata su MAI, la tua radio Wi-Fi rimarrà attiva finchè non la spegnerai.</string>
+<string name="setting_to_default">La sospensione della connessione Wi-Fi è ora impostata su MAI DEFAULT, il telefono potrebbe spegnere la radio Wi-Fi quando lo bloccherai.</string>
 </resources>
